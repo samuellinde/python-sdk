@@ -27,12 +27,12 @@ Alternatively, you can install from source:
 
 ## Usage
 
-Initialise the Moltin object with your `client_id` and `client_secret`, and optionally a specific API version (e.g. `v1`).
+Initialise the Moltin object with your `client_id` and `client_secret`, and optionally a specific API version (e.g. `v2`).
 
 ```python
     from moltin.moltin import Moltin
     
-    m = Moltin("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET"[, version="v1"])
+    m = Moltin("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET"[, version="v2"])
 ```    
 
 ### Authentication

@@ -10,7 +10,10 @@ def with_error_handling(callback, *args, **kwargs):
     if 'error' in r:
         raise RequestError(r['error'])
     elif 'errors' in r:
-        raise RequestError(", ".join(r['errors']))
+        error_str = ''
+        for e in r['errors']:
+            error_str = error_str + "%s. %s: %s. " % (e['status'], e['title'], e['detail'])
+        raise RequestError(error_str)
     elif 'result' in r:
         result = r['result']
     elif 'message' in r:
@@ -24,7 +27,7 @@ def with_error_handling(callback, *args, **kwargs):
 class Request:
 
     def __init__(self, version):
-        self.base = "https://api.molt.in/"
+        self.base = "https://api.moltin.com/"
         self.version = None
         self.access_token = None
         self.headers = {}

@@ -7,7 +7,7 @@ from . mock_response import mock_auth_response
 from sure import expect
 from time import time
 
-r = Request("v1")
+r = Request("v2")
 
 
 def set_access_token(token, expires):

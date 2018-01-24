@@ -8,7 +8,7 @@ from sure import expect
 
 import mock
 
-m = Authenticator("", "", Request("v1"), TokenContainer())
+m = Authenticator("", "", Request("v2"), TokenContainer())
 
 
 @mock.patch("moltin.requests.post")

@@ -13,7 +13,7 @@ class Moltin:
     This class provides an easy way to authenticate, make HTTP requests and do CRUD operations.
 
     Usage:
-    m = Moltin(your_client_id, your_client_secret[, version="v1"])
+    m = Moltin(your_client_id, your_client_secret[, version="v2"])
 
     To Authenticate with id and secret:
     token = m.authenticate()
@@ -67,7 +67,7 @@ class Moltin:
     }
 
     # Initialise with your client id and secret.
-    def __init__(self, client_id, client_secret, version="v1"):
+    def __init__(self, client_id, client_secret, version="v2"):
         self.request = Request(version)
         self.authenticator = Authenticator(client_id, client_secret, self.request, TokenContainer())
 
