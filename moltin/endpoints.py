@@ -3,6 +3,10 @@ import uuid
 from . url import sanitize_url_fragment
 from . exception import *
 
+try:
+    from functools import reduce
+except:
+    pass
 
 class BaseEndpoint(object):
 
