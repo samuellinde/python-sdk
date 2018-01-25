@@ -12,7 +12,7 @@ def with_error_handling(callback, *args, **kwargs):
     elif 'errors' in r:
         error_str = ''
         for e in r['errors']:
-            error_str = error_str + "%s. %s: %s. " % (e['status'], e['title'], e['detail'])
+            error_str = error_str + "%s: %s. " % (e['title'], e['detail'])
         raise RequestError(error_str)
     elif 'result' in r:
         result = r['result']
@@ -51,18 +51,25 @@ class Request:
                                    headers=self.headers,
                                    data=payload)
 
-    def post(self, trailing_uri, payload, auth=False):
+    def post(self, trailing_uri, payload, json=False, auth=False):
         if auth:
             headers = {}
             request_url = self.make_auth_url(trailing_uri)
         else:
             headers = self.headers
             request_url = self.make_url(trailing_uri)
+        
+        if json:
+            return with_error_handling(requests.post,
+                                    request_url,
+                                    json=payload,
+                                    headers=headers)
 
-        return with_error_handling(requests.post,
-                                   request_url,
-                                   data=payload,
-                                   headers=headers)
+        else:
+            return with_error_handling(requests.post,
+                                    request_url,
+                                    data=payload,
+                                    headers=headers)
 
     def auth(self, auth_uri, payload):
         return self.post(auth_uri, payload, auth=True)

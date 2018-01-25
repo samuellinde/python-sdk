@@ -46,10 +46,10 @@ class CartEndpoint(BaseEndpoint):
     def __init__(self, request, endpoint, cart_id=None):
         super(CartEndpoint, self).__init__(request, endpoint)
         self.id = cart_id or uuid.uuid4()
-        self.endpoint = self._url_with(cart_id)
+        self.endpoint = self._url_with(self.id)
 
     def add_item(self, params):
-        return self.request.post(self.endpoint, params)
+        return self.request.post(self.endpoint + '/items', params, json=True)
 
     def add_variation(self, params):
         return self.add_item(params)
