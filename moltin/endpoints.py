@@ -65,7 +65,7 @@ class CartEndpoint(BaseEndpoint):
         )
 
     def contents(self):
-        return self.request.get(self.endpoint)
+        return self.request.get(self.endpoint + '/items')
 
     def has_item(self, item_id):
         return bool(self.request.get(self._url_with("has", item_id))["status"])
